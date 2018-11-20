@@ -1,0 +1,100 @@
+---
+# Installation
+docker_version: 'latest'
+docker_compose_version: '1.23.1'
+docker_compose_url: 'https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64'
+docker_user: 'docker'
+docker_group: '{{ docker_user }}'
+docker_apt_key_server: 'https://download.docker.com/linux/ubuntu/gpg'
+docker_apt_key_id: '9DC858229FC7DD38854AE2D88D81803C0EBFCD88'
+docker_local_dir: '~/'
+docker_local_main_deb: 'docker-ce_18.09.0~3-0~ubuntu-xenial_amd64.deb'
+docker_local_cli_deb: 'docker-ce-cli_18.09.0~3-0~ubuntu-xenial_amd64.deb'
+docker_local_containerd_deb: 'containerd.io_1.2.0-1_amd64.deb'
+docker_local_compose: 'docker-compose-Linux-x86_64'
+docker_upload_local: false
+
+# Configuration
+docker_authorization_plugins: []
+docker_data_root: ''
+docker_dns: []
+docker_dns_opts: []
+docker_dns_search: []
+docker_exec_opts: []
+docker_exec_root: ''
+docker_experimental: false
+docker_features: null
+docker_storage_driver: ''
+docker_storage_opts: []
+docker_labels: []
+docker_live_restore: true
+docker_log_driver: 'json-file'
+docker_json_log_max_size: '1m'
+docker_json_log_max_file: 1000
+docker_log_opts: |
+  {
+    "max-size": "{{ docker_json_log_max_size }}",
+    "max-file": {{ docker_json_log_max_file }}
+  }
+docker_mtu: 0
+docker_pidfile: ''
+docker_cluster_store: ''
+docker_cluster_store_opts: null
+docker_cluster_advertise: ''
+docker_max_concurrent_downloads: 3
+docker_max_concurrent_uploads: 5
+docker_default_shm_size: '64M'
+docker_shutdown_timeout: 15
+docker_debug: true
+docker_log_level: ''
+docker_tls: false
+docker_tlsverify: true
+docker_tlscacert: ''
+docker_tlscert: ''
+docker_tlskey: ''
+docker_swarm_default_advertise_addr: ''
+docker_api_cors_header: ''
+docker_selinux_enabled: false
+docker_userns_remap: ''
+docker_cgroup_parent: ''
+docker_init: false
+docker_init_path: '/usr/libexec/docker-init'
+docker_ipv6: false
+docker_iptables: false
+docker_ip_forward: false
+docker_ip_masq: false
+docker_userland_proxy: false
+docker_userland_proxy_path: '/usr/libexec/docker-proxy'
+docker_ip: '0.0.0.0'
+docker_bridge: ''
+docker_bip: ''
+docker_fixed_cidr: ''
+docker_fixed_cidr_v6: ''
+docker_default_gateway: ''
+docker_default_gateway_v6: ''
+docker_icc: false
+docker_raw_logs: false
+docker_allow_nondistributable_artifacts: []
+docker_registry_mirrors: []
+docker_seccomp_profile: ''
+docker_insecure_registries: []
+docker_no_new_privileged: false
+docker_default_runtime: 'runc'
+docker_oom_score_adjust: -500
+
+docker_daemon_flags:
+  - '-H unix://'
+docker_daemon_environment: []
+
+# Cron
+docker_cron_jobs:
+  - name: clean up
+    job: 'docker system prune -af &> /dev/null'
+    schedule:
+      - 0
+      - 0
+      - '*'
+      - '*'
+      - 0
+    cron_file: 'docker-disk-clean-up'
+    user: '{{ docker_user }}'

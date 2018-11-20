@@ -1,0 +1,125 @@
+# {{ ansible_managed }}
+
+{
+  "authorization-plugins": {{ docker_authorization_plugins }},
+  "data-root": "{{ docker_data_root }}",
+  "dns": {{ docker_dns }},
+  "dns-opts": {{ docker_dns_opts }},
+  "dns-search": {{ docker_dns_search }},
+  "exec-opts": {{ docker_exec_opts }},
+  "exec-root": "{{ docker_exec_root }}",
+{% if docker_experimental == true %}
+  "experimental": true,
+{% else %}
+  "experimental": false,
+{% endif %}
+  "features": {{ docker_features | default('{}') }},
+  "storage-driver": "{{ docker_storage_driver }}",
+  "storage-opts": {{ docker_storage_opts }},
+  "labels": {{ docker_labels }},
+{% if docker_live_restore == true %}
+  "live-restore": true,
+{% else %}
+  "live-restore": false,
+{% endif %}
+  "log-driver": "{{ docker_log_driver }}",
+  "log-opts": {{ docker_log_opts | to_json }},
+  "mtu": {{ docker_mtu }},
+  "pidfile": "{{ docker_pidfile }}",
+  "cluster-store": {{ docker_cluster_store }},
+  "cluster-store-opts": {{ docker_cluster_store_opts | default('{}') }},
+  "cluster-advertise": "{{ docker_cluster_advertise }}",
+  "max-concurrent-downloads": {{ docker_max_concurrent_downloads }},
+  "max-concurrent-uploads": {{ docker_max_concurrent_uploads }},
+  "default-shm-size": "{{ docker_default_shm_size }}",
+  "shutdown-timeout": {{ docker_shutdown_timeout }},
+{% if docker_debug == true %}
+  "debug": true,
+{% else %}
+  "debug": false,
+{% endif %}
+  "log-level": "{{ docker_log_level }}",
+{% if docker_tls == true %}
+  "tls": true,
+{% if docker_tlsverify == true %}
+  "tlsverify": true,
+{% else %}
+  "tlsverify": false,
+{% endif %}
+  "tlscacert": "{{ docker_tlscacert }}",
+  "tlscert": "{{ docker_tlscert }}",
+  "tlskey": "{{ docker_tlskey }}",
+{% else %}
+  "tls": false,
+{% endif %}
+  "swarm-default-advertise-addr": "{{ docker_swarm_default_advertise_addr }}",
+  "api-cors-header": "{{ docker_api_cors_header }}",
+{% if docker_selinux_enabled == true %}
+  "selinux-enabled": true,
+{% else %}
+  "selinux-enabled": false,
+{% endif %}
+  "userns-remap": "{{ docker_userns_remap }}",
+  "group": "{{ docker_group | default('docker') }}",
+  "cgroup-parent": "{{ docker_cgroup_parent }}",
+{% if docker_init == true %}
+  "init": true,
+{% else %}
+  "init": false,
+{% endif %}
+  "init-path": "{{ docker_init_path }}",
+{% if docker_ipv6 == true %}
+  "ipv6": true,
+{% else %}
+  "ipv6": false,
+{% endif %}
+{% if docker_iptables == true %}
+  "iptables": true,
+{% else %}
+  "iptables": false,
+{% endif %}
+{% if docker_ip_forward == true %}
+  "ip-forward": true,
+{% else %}
+  "ip-forward": false,
+{% endif %}
+{% if docker_ip_masq == true %}
+  "ip-masq": true,
+{% else %}
+  "ip-masq": false,
+{% endif %}
+{% if docker_userland_proxy == true %}
+  "userland-proxy": true,
+{% else %}
+  "userland-proxy": false,
+{% endif %}
+  "userland-proxy-path": "{{ docker_userland_proxy_path }}",
+  "ip": "{{ docker_ip }}",
+  "bridge": "{{ docker_bridge }}",
+  "bip": "{{ docker_bip }}",
+  "fixed-cidr": "{{ docker_fixed_cidr }}",
+  "fixed-cidr-v6": "{{ docker_fixed_cidr_v6 }}",
+  "default-gateway": "{{ docker_default_gateway }}",
+  "default-gateway-v6": "{{ docker_default_gateway_v6 }}",
+{% if docker_icc == true %}
+  "icc": true, 
+{% else %}
+  "icc": false,
+{% endif %}
+{% if docker_raw_logs == true %}
+  "raw-logs": true,
+{% else %}
+  "raw-logs": false,
+{% endif %}
+  "allow-nondistributable-artifacts": {{ docker_allow_nondistributable_artifacts }},
+  "registry-mirrors": {{ docker_registry_mirrors }},
+  "seccomp-profile": "{{ docker_seccomp_profile }}",
+  "insecure-registries": {{ docker_insecure_registries }},
+{% if docker_no_new_privileged == true %}
+  "no-new-privileges": true,
+{% else %}
+  "no-new-privileges": false,
+{% endif %}
+  "default-runtime": "{{ docker_default_runtime }}",
+  "oom-score-adjust": {{ docker_oom_score_adjust }}
+}

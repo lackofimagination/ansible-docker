@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+[Service]
+{% if (docker_daemon_environment is defined) and (docker_daemon_environment[0] is defined) %}
+Environment="{{ docker_daemon_environment | join(' ') }}"
+{% else %}
+Environment=
+{% endif %}

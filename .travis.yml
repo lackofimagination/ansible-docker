@@ -1,0 +1,21 @@
+---
+language: python
+
+services:
+  - docker
+
+env:
+  - TEST_SCENARIO=default
+  - TEST_SCENARIO=upload
+
+before_install:
+  - wget https://github.com/docker/compose/releases/download/1.23.1/docker-compose-Linux-x86_64 -P /home/travis/
+  - wget https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/containerd.io_1.2.0-1_amd64.deb -P /home/travis/
+  - wget https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/docker-ce-cli_18.09.0~3-0~ubuntu-xenial_amd64.deb -P /home/travis/
+  - wget https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/docker-ce_18.09.0~3-0~ubuntu-xenial_amd64.deb -P /home/travis/
+
+install:
+  - pip install molecule docker
+
+script:
+  - "molecule test --scenario-name $TEST_SCENARIO"
