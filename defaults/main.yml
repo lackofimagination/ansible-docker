@@ -86,7 +86,7 @@ docker_daemon_flags:
   - '-H unix://'
 docker_daemon_environment: []
 
-# Cron
+# Cron jobs
 docker_cron_jobs:
   - name: clean up
     job: 'docker system prune -af &> /dev/null'
