@@ -2,4 +2,8 @@
 
 [Service]
 ExecStart=
+{% if (docker_daemon_flags is defined) and (docker_daemon_flags[0] is defined) %}
 ExecStart=/usr/bin/dockerd {{ docker_daemon_flags | join(' ') }}
+{% else %}
+ExecStart=/usr/bin/dockerd
+{% endif %}

@@ -23,7 +23,7 @@ docker_dns_search: []
 docker_exec_opts: []
 docker_exec_root: ''
 docker_experimental: false
-docker_features: null
+docker_features: {}
 docker_storage_driver: ''
 docker_storage_opts: []
 docker_labels: []
@@ -34,12 +34,12 @@ docker_json_log_max_file: 1000
 docker_log_opts: |
   {
     "max-size": "{{ docker_json_log_max_size }}",
-    "max-file": {{ docker_json_log_max_file }}
+    "max-file": "{{ docker_json_log_max_file }}"
   }
 docker_mtu: 0
 docker_pidfile: ''
 docker_cluster_store: ''
-docker_cluster_store_opts: null
+docker_cluster_store_opts: {}
 docker_cluster_advertise: ''
 docker_max_concurrent_downloads: 3
 docker_max_concurrent_uploads: 5
@@ -60,7 +60,7 @@ docker_cgroup_parent: ''
 docker_init: false
 docker_init_path: '/usr/libexec/docker-init'
 docker_ipv6: false
-docker_iptables: false
+docker_iptables: true
 docker_ip_forward: false
 docker_ip_masq: false
 docker_userland_proxy: false
@@ -82,8 +82,7 @@ docker_no_new_privileged: false
 docker_default_runtime: 'runc'
 docker_oom_score_adjust: -500
 
-docker_daemon_flags:
-  - '-H unix://'
+docker_daemon_flags: []
 docker_daemon_environment: []
 
 # Cron jobs

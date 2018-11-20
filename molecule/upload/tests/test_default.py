@@ -42,3 +42,9 @@ def test_docker_service(host):
 
     assert s.is_enabled
     assert s.is_running
+
+
+def test_docker_compose_file(host):
+    f = host.file('/usr/local/bin/docker-compose')
+
+    assert f.exists
